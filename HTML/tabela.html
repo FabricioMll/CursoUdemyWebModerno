@@ -1,0 +1,52 @@
+<table border="1px">
+    <caption>Produtos</caption>
+    <thead> <!-- Cabecalho da tabela -->
+        <tr> <!-- Table roll -->
+            <th>Produto</th> <!-- Table head -->
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody style="text-align: right;">
+        <tr>
+            <td>iPad</td>
+            <td>3.299,99</td>
+            <td>5</td>
+            <td>16.788,99</td>
+        </tr>
+        <tr>
+            <td>Notebook</td>
+            <td>2.999,99</td>
+            <td>3</td>
+            <td>8.999,99</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">Total</td>
+            <!-- rowspan ocupa mais de uma linha -->
+            <td> 25.599,99</td>
+        </tr>
+    </tfoot>
+</table>
+
+<style>
+    th, td {
+        padding: 10px;
+    }
+
+    thead tr {
+        border-bottom: solid 3px #444;
+    }
+
+    tbody tr:hover {
+        background-color: #ddd;
+    }
+
+    tfoot {
+        background-color: #444;
+        color: #fff;
+    }
+    
+</style>

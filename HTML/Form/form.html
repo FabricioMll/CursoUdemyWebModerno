@@ -1,0 +1,50 @@
+<h1>Formulário</h1>
+
+<form method="POST">
+    <input type="hidden" name="id" value="3">
+    <input type="text" name="nome">
+    <input type="password" name="senha">
+    <textarea name="bio" cols="30" rows="10"></textarea>
+    <div>
+        <input type="radio" name="tipo" value="admin">Admin
+        <input type="radio" name="tipo" value="regular">Regular
+    </div>
+    UF:
+    <select name="estado">
+        <option value=''>Selecione</option>
+        <option value="RS"> Rio Grande do Sul</option>
+        <option value="SC">Santa Catarina</option>
+        <option value="PR">Paraná</option>
+    </select>
+    <select name="interesses" multiple size="4" >
+        <option value="JS">JavaScript</option>
+        <option value="Java">Java</option>
+        <option value="PHP">PHP</option>
+        <option value="SQL">SQL</option>
+        <option value="C#">C#</option>
+        <option value="C++">C++</option>
+    </select>
+    <fieldset id="mensagem">
+        <legend>Artgo novo</legend>
+    
+            
+            <p>Artigo:</p>
+            <p><input type="text" name="titulo" id="autoincrement"> Título</p>
+            <p><textarea name="tMsg" id="cMsg" cols="45" rows="5" placeholder="Escreva aqui o seu artigo"></textarea></p>
+    </fieldset>
+
+    <button formaction="http://localhost:3003/usuarios">Incluir</button>
+    <button formaction="http://localhost:3003/usuarios/3">Alterar</button>
+</form>
+<style>
+    input,
+    textarea,
+    select {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    input[type=radio] {
+        display: inline;
+    }
+</style>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estiloJSHTMLCSS.css">
+</head>
+<body class="conteudoExercicio">
+    
+</body>
+<script>
+    const body = document.querySelector('body')
+    
+    const div1 = document.createElement('div')
+    div1.classList.add('primeira')
+    div1.innerHTML = 'Primeiro'
+    
+    const div2 = document.createElement('div')
+    div2.setAttribute('atributo', 'valor')
+    div2.innerHTML = 'Segundo'
+
+    const p = document.createElement('p')
+    p.innerHTML = 'Terceiro'
+    
+    const div3 = document.createElement('div')
+    div3.appendChild(p)
+
+    body.appendChild(div1)
+    body.appendChild(div2)
+    body.appendChild(div3)
+
+    
+
+
+</script>
+</html>

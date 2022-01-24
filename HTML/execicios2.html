@@ -1,0 +1,28 @@
+Segundo conteúdo
+<p>Since your URL is relative (it's just "hi.txt"), 
+    it's resolved against the URL of the page the 
+    code is running in. In your case, that appears 
+    to be file:///something — that is, a file you've 
+    loaded directly from your file system, not by 
+    requesting it from a server. Chrome doesn't allow 
+    fetching from the file scheme.
+    <blockquote cite="https://stackoverflow.com/questions/69144759/fetch-api-cannot-load-url-scheme-file-is-not-supported">Vai 
+        dividir o parágrafo para fazer uma citação 
+        direta e longa. hi you are running your file 
+        like this way -you are right clicking on your
+         html file-opening with it browser. This way 
+         you are telling to browser to open your html 
+          from your file location where you have saved it.
+          Check in Your browser url bar you will get 
+          something like this C:/xampp/htdocs/xyz.html so 
+          this is your local directory file system. so now 
+           have to first start your sever such as xampp or 
+           whatever server you have installed and then you 
+           type this localhost/filename or /subfolder nam
+           nd / file name if you have stored it in subfolder
+           ...and hit enter.inshort you have to query to a 
+           server like you does in php file calling</blockquote> The file scheme's 
+    origin is null. The Chrome team's interpretation 
+    of the Same Origin Policy is that no origin, not 
+    even itself, should match null. (A reasonable 
+    interpretation in my view, but opinions can vary.)</p>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estiloJSHTMLCSS.css">
+</head>
+<body>
+    <div>
+        <a href="http://www.google.com.br" em5segundos >Google</a>
+        <!-- Se quiser usar o onclick="naveg()", é necessário
+        passar o parâmetro 'event', caso contrário não funcionará -->
+    </div>
+</body>
+<script>
+    function naveg(e) {
+        e.preventDefault()
+        console.log('Saindo...')
+        setTimeout(() => {
+            window.location.href = e.target.href
+        }, 5000)
+    }
+
+    const a = document.querySelector('[em5segundos]')
+    a.onclick = naveg
+    // Esta estratégia é mais interessante do que as outras alternativas.
+</script>
+</html>

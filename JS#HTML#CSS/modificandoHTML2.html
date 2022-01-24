@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estiloJSHTMLCSS.css">
+
+
+</head>
+<body>
+    <div>
+        <p>Texto da página</p>
+    </div>
+</body>
+<script>
+    const div = document.querySelector('div')
+    div.innerHTML = 'Texto alterado'
+    div.insertAdjacentText('beforebegin', '<p>Adj Text tem que tirar as tags</p>')
+    div.insertAdjacentHTML('beforebegin', '<p>após o início da div</p>')
+</script>
+</html>
