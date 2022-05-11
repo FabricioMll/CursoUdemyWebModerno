@@ -1,0 +1,19 @@
+db.estados.update({sigla: "SP"}, {$set: {populacao: 453423423}})
+
+retorno =>
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+db.estados.update({sigla: "AL"}, {$set: {cidades: [{nome: "Sergipe"}]}})
+db.estados.update({_id: ObjectId("6259972c654d65738221330d")}, {$set: {nome: "Rio de Janeiro", sigla: "RJ", populacao: 349999}})
+6259972c654d65738221330d
+retorno =>
+ << insere uma nova cidade de nome Sergipe dentro do Estado de sigla AL >>
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+db.estados.update({sigla: "SP"},
+ {$push: {cidades: {nome: "Santos", populacao: 3243423}}})
+retorno =>
+<< insere nova cidade >>
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+

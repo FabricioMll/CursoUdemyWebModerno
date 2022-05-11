@@ -1,0 +1,47 @@
+Agregation Pipeline Stage:
+https://www.mongodb.com/docs/manual/reference/operator/aggregation-pipeline/
+
+---------------------------------------------------------------
+db.estados.aggregate([
+    { $project: {nome: 1, "cidades.nome": 1, _id: 0} }
+])
+
+retorno => 
+{ "nome" : "Acre" }
+{ "nome" : "Alagoas" }
+{  }
+{ "nome" : "Rio de Janeiro", "cidades" : [ { "nome" : "Niterói" } ] }
+{ "nome" : "São Paulo", "cidades" : [ { "nome" : "Campinas" }, { "nome" : "Guarulhos" }, { "nome" : "Sorocaba" } ] }
+
+-----------------------------------------------------------------
+db.estados.aggregate([
+    { $project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id: 0}}
+])
+
+retorno => 
+{ "sigla" : "AC", "populacao" : 0 }
+{ "sigla" : "AL", "populacao" : 0 }
+{ "populacao" : 0 }
+{ "sigla" : "RJ", "populacao" : 48343 }
+{ "sigla" : "SP", "populacao" : 3052443 }
+
+// A função $sum retorna a soma da populacao
+
+-----------------------------------------------------------------
+db.estados.aggregate([
+    {$project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id:0}},
+    {$group: {_id: null, populacaoTotal: {$sum: "$populacao" }} }
+])
+
+retorno =>
+{ "_id" : null, "populacaoTotal" : 3100786 }
+
+-----------------------------------------------------------------
+db.estados.aggregate([
+    {$project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id:0}},
+    {$group: {_id: null, populacaoTotal: {$sum: "$populacao" }} },
+    {$project: {_id: 0, populacaoTotal: 1}}
+])
+
+retorno =>
+{ "populacaoTotal" : 3100786 }

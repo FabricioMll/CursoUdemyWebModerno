@@ -1,0 +1,16 @@
+Microsoft Windows [versão 10.0.19044.1645]
+(c) Microsoft Corporation. Todos os direitos reservados.
+
+C:\Users\fmell>  psql -U postgres
+
+postgres=#  \l
+ 
+postgres=# create database teste_install;
+
+postgres=# \c teste_install
+
+teste_install=# \dt
+
+teste_install=# \q
+
+C:\Users\fmell>

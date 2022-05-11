@@ -1,0 +1,25 @@
+Comando ".find()" lista os dados da tabela
+
+O ".find().pretty()" lista os dados num formato json
+
+É possível inserir dados que sejam objetos. Tudo seguinto a sintaxe do JSON.
+
+.findOne() => Retorna o primeiro objeto.
+.findOne({sigla: "RJ"}) => retorna o objeto que corresponda ao parametro, se existir.
+
+db.estados.find({$or: [{sigla: "AC"}, {sigla: "RJ"}]}).pretty() 
+retorna todos os objetos que correspondam ao filtro.
+
+db.estados.find({populacao: {$exists: true}}).pretty() => encontra o objeto correspondente ao filtro.
+
+> db.estados.find().skip(1).limit(2) => retorna os dois primeiros objeto
+
+db.estados.count() => retorna o número de obj.
+
+db.estados.find({sigla: "SP"}, {nome: 1, sigla: 1})
+=> retorna o obj do primeiro parâmetro contendo os dados do segundo parametro.
+
+Se quiser ocultar o id basta acrescentar "id: 0".
+
+db.estados.find({sigla: "SP"}, {"cidades.nome": 1, _id: 0}) => retorna conforme o filtro.
+

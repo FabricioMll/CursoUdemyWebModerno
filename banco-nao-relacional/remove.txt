@@ -1,0 +1,12 @@
+db.estados.remove({sigla: "AC"})
+retorno =>
+<< Remove o Estado de sigla AC >>
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+db.estados.remove({populacao: {$exists: true}}, 1)
+retorno =>
+<< Haviam 2 estados com populacao "true", mas somente 1 foi removido >>
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+db.estados.remove({populacao: {$lt: 20000000000}})
+Retorno =>
+<< Removeu todos os registros cuja populacao seja menor do que 20000000000 >>
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

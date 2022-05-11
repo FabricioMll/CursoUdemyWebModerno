@@ -1,0 +1,14 @@
+npm init -y;
+
+npm i --save express
+
+[depois de criar o arquivo index.js]:
+
+node index.js
+
+npm i --save-dev nodemon
+
+https://pm2.keymetrics.io/
+npm install --save pm2
+
+ npm i -g pm2

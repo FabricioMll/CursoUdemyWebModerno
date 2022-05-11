@@ -1,1 +1,24 @@
+no cmd => C:\Users\fmell>mongod
+
+comandos db. [tab]2x mostra tudo o que tem no diretório db
+help => mostra todos os comandos basicos.
+
 "show dbs" => mostra todos os bancos de dados disponiveis e o espaço que eles ocupam
+
+"use [nome do banco]" => vai selecionar o banco. No caso, eu digitei "wm" como nome
+
+"db.createCollection('estados')" dá [Enter] e em seguida 
+"show dbs" => vai mostrar o banco wm, que foi criado.
+
+"show collections" => mostra a coleção criada, no caso, vai mostrar "estados"
+
+O mongo é "case sensitive"
+
+"db.[nome do banco].drop()" => vai excluir o banco
+
+É possíve criar inserir dados numa tabela que não existe, ele vai criar a tabela automaticamente e inserir os dados
+
+A função "db.estados.save()" faz a mesma coisa que o "db.estados.insert()"
+
+É possível inserir atributos diferentes para cada tupla.
+

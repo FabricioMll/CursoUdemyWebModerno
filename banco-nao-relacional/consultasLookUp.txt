@@ -1,0 +1,112 @@
+db.empresas.aggregate([
+    {$match: {nome: "Bradesco"}},
+    {$lookup: {
+        from: "estados",
+        localField: "estadoId",
+        foreignField: "_id",
+        as: "estado"
+    }}
+]).pretty()
+
+RETORNO =>
+{
+        "_id" : ObjectId("625a13375438c0ceb949b0c6"),
+        "nome" : "Bradesco",
+        "estadoId" : ObjectId("6259972c654d65738221330d"),
+        "estado" : [
+                {
+                        "_id" : ObjectId("6259972c654d65738221330d"),
+                        "nome" : "Rio de Janeiro",
+                        "populacao" : 349999,
+                        "sigla" : "RJ"
+                }
+        ]
+}
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+db.empresas.aggregate([
+    {$match: {nome: "Vale"}},
+    {$lookup: {
+        from: "estados",
+        localField: "estadoId",
+        foreignField: "_id",
+        as: "estado"
+    }}
+]).pretty()
+
+RETORNO =>
+{
+        "_id" : ObjectId("625a13d45438c0ceb949b0c7"),
+        "nome" : "Vale",
+        "estadoId" : ObjectId("625a08d85438c0ceb949b0c4"),
+        "estado" : [
+                {
+                        "_id" : ObjectId("625a08d85438c0ceb949b0c4"),
+                        "nome" : "São Paulo",
+                        "sigla" : "SP",
+                        "regiao" : "Sudeste",
+                        "cidades" : [
+                                {
+                                        "_id" : ObjectId("625a08d85438c0ceb949b0c5"),
+                                        "nome" : "campinas"
+                                }
+                        ],
+                        "populacao" : 4534000
+                }
+        ]
+}
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+db.empresas.aggregate([
+    {$match: {nome: "Vale"}},
+    {$lookup: {
+        from: "estados",
+        localField: "cidadeId",
+        foreignField: "cidades._id",
+        as: "cidade"
+    }}
+]).pretty()
+
+RETORNO =>
+{
+    "_id" : ObjectId("625a13d45438c0ceb949b0c7"),
+    "nome" : "Vale",
+    "estadoId" : ObjectId("625a08d85438c0ceb949b0c4"),
+    "cidade" : [
+            {
+                "_id" : ObjectId("6259972c654d65738221330d"),
+                "nome" : "Rio de Janeiro",
+                "populacao" : 349999,
+                "sigla" : "RJ"
+            }
+    ]
+}
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+db.empresas.aggregate([
+    {$match: {nome: "Vale"}},
+    {$lookup: {
+        from: "estados",
+        localField: "cidadeId",
+        foreignField: "cidades._id",
+        as: "estado"
+    }},
+    {$addFields: {mesmaCidade: {$cmp: ["$estado.cidades._id", "$cidadeId"]}}}
+]).pretty()
+
+RETORNO =>
+{
+        "_id" : ObjectId("625a13d45438c0ceb949b0c7"),
+        "nome" : "Vale",
+        "estadoId" : ObjectId("625a08d85438c0ceb949b0c4"),
+        "estado" : [
+                {
+                        "_id" : ObjectId("6259972c654d65738221330d"),
+                        "nome" : "Rio de Janeiro",
+                        "populacao" : 349999,
+                        "sigla" : "RJ"
+                }
+        ],
+        "mesmaCidade" : 1
+}
