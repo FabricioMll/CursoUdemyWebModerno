@@ -1,0 +1,1 @@
+"show dbs" => mostra todos os bancos de dados disponiveis e o espaço que eles ocupam
