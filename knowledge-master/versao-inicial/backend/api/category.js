@@ -50,7 +50,7 @@ module.exports = app => {
                 return res.status(204).send()
             } else if (articles) {
                 return res.status(204).send()
-            }
+            } 
 
             
         } catch(msg) {
