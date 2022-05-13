@@ -1,20 +1,22 @@
 <template>
     <div class="articles-by-category">
-        <PageTitle icon="fa fa-folder-o" :main="category.name" sub="Categoria" />
+        <PageTitle icon="fa fa-folder-o"
+            :main="category.name" sub="Categoria" />
         <ul>
             <li v-for="article in articles" :key="article.id">
                 <ArticleItem :article="article" />
             </li>
         </ul>
         <div class="load-more">
-            <button v-if="loadMore" class="btn btn-lg btn-outline-primary"
-            @click="getArticles">Carregar mais Artigos</button>
+            <button v-if="loadMore"
+                class="btn btn-lg btn-outline-primary"
+                @click="getArticles">Carregar Mais Artigos</button>
         </div>
     </div>
 </template>
 
 <script>
-import { baseApiUrl } from '../../global'
+import { baseApiUrl } from '@/global'
 import axios from 'axios'
 import PageTitle from '../template/PageTitle'
 import ArticleItem from './ArticleItem'
@@ -41,7 +43,7 @@ export default {
                 this.articles = this.articles.concat(res.data)
                 this.page++
 
-                if (res.data.length === 0) this.loadMore = false
+                if(res.data.length === 0) this.loadMore = false
             })
         }
     },
@@ -62,7 +64,6 @@ export default {
         this.getArticles()
     }
 }
-
 </script>
 
 <style>

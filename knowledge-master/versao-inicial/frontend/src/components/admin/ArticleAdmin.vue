@@ -2,48 +2,53 @@
     <div class="article-admin">
         <b-form>
             <input id="article-id" type="hidden" v-model="article.id" />
-                <b-form-group label="Nome:" label-for="article-name">
-                    <b-form-input id="article-name" type="text" 
-                        v-model="article.name" required 
-                        :readonly="mode === 'remove'"
-                        placeholder="Informe o Nome do Artigo..."></b-form-input>
-                </b-form-group>
-                <b-form-group label="Descrição" label-for="article-description">
-                    <b-form-input id="article-description" type="text" 
-                        v-model="article.description" required 
-                        :readonly="mode === 'remove'"
-                        placeholder="Descreva o Artigo..."></b-form-input>
-                </b-form-group>
-                <b-form-group v-if="mode === 'save'" label="Imagem (URL):" label-for="article-imageUrl">
-                    <b-form-input id="article-imageUrl" type="text" 
-                        v-model="article.imageUrl" required 
-                        :readonly="mode === 'remove'"
-                        placeholder="Informe a URL da imagem..."></b-form-input>
-                </b-form-group>
-                <b-form-group v-if="mode === 'save'" label="Categoria:" label-for="article-categoryId">
-                    <b-form-select id="article-categoryId"
-                        :options="categories" v-model="article.categoryId" />
-                </b-form-group>
-                <b-form-group v-if="mode === 'save'" label="Autor:" label-for="article-userId">
-                    <b-form-select id="article-userId"
-                        :options="users" v-model="article.userId" />
-                </b-form-group>
-                <b-form-group v-if="mode === 'save'" label="Conteúdo" label-for="category-content">
-                   <VueEditor v-model="article.content"
-                        placeholder="Informe o Conteúdo do Artigo..." />
-                </b-form-group>
-                <b-button variant="primary" v-if="mode === 'save'" 
-                    @click="save">Salvar</b-button>
-                <b-button variant="danger" v-if="mode === 'remove'" 
-                    @click="remove">Excluir</b-button>
-                <b-button class="ml-2" @click="reset">Cancelar</b-button>
+            <b-form-group label="Nome:" label-for="article-name">
+                <b-form-input id="article-name" type="text"
+                    v-model="article.name" required
+                    :readonly="mode === 'remove'"
+                    placeholder="Informe o Nome do Artigo..." />
+            </b-form-group>
+            <b-form-group label="Descrição" label-for="article-description">
+                <b-form-input id="article-description" type="text"
+                    v-model="article.description" required
+                    :readonly="mode === 'remove'"
+                    placeholder="Informe o Nome do Artigo..." />
+            </b-form-group>
+            <b-form-group v-if="mode === 'save'"
+                label="Imagem (URL):" label-for="article-imageUrl">
+                <b-form-input id="article-imageUrl" type="text"
+                    v-model="article.imageUrl" required
+                    :readonly="mode === 'remove'"
+                    placeholder="Informe a URL da Imagem..." />
+            </b-form-group>
+            <b-form-group v-if="mode === 'save'" 
+                label="Categoria:" label-for="article-categoryId">
+                <b-form-select id="article-categoryId"
+                    :options="categories" v-model="article.categoryId" />
+            </b-form-group>
+            <b-form-group v-if="mode === 'save'" 
+                label="Autor:" label-for="article-userId">
+                <b-form-select id="article-userId"
+                    :options="users" v-model="article.userId" />
+            </b-form-group>
+            <b-form-group v-if="mode === 'save'"
+                label="Conteúdo" label-for="article-content">
+                <VueEditor v-model="article.content"
+                    placeholder="Informe o Conteúdo do Artigo..." />
+            </b-form-group>
+            <b-button variant="primary" v-if="mode === 'save'"
+                @click="save">Salvar</b-button>
+            <b-button variant="danger" v-if="mode === 'remove'"
+                @click="remove">Excluir</b-button>
+            <b-button class="ml-2" @click="reset">Cancelar</b-button>
         </b-form>
+        <hr>
         <b-table hover striped :items="articles" :fields="fields">
             <template slot="actions" slot-scope="data">
                 <b-button variant="warning" @click="loadArticle(data.item)" class="mr-2">
                     <i class="fa fa-pencil"></i>
                 </b-button>
-                <b-button variant="danger" @click="loadArticle(data.item, 'remove')" class="mr-2">
+                <b-button variant="danger" @click="loadArticle(data.item, 'remove')">
                     <i class="fa fa-trash"></i>
                 </b-button>
             </template>
@@ -54,7 +59,7 @@
 
 <script>
 import { VueEditor } from "vue2-editor"
-import { baseApiUrl, showError } from '../../global'
+import { baseApiUrl, showError } from '@/global'
 import axios from 'axios'
 
 export default {
@@ -82,8 +87,7 @@ export default {
         loadArticles() {
             const url = `${baseApiUrl}/articles?page=${this.page}`
             axios.get(url).then(res => {
-                // this.articles = res.data
-                this.articles = res.data.data // Lá no backend/api/article.js, existe um array chamaod data que recebe os artigos
+                this.articles = res.data.data
                 this.count = res.data.count
                 this.limit = res.data.limit
             })
@@ -104,7 +108,6 @@ export default {
                 .catch(showError)
         },
         remove() {
-            this.mode = 'remove'
             const id = this.article.id
             axios.delete(`${baseApiUrl}/articles/${id}`)
                 .then(() => {
@@ -115,7 +118,6 @@ export default {
         },
         loadArticle(article, mode = 'save') {
             this.mode = mode
-            // this.article = { ...article }
             axios.get(`${baseApiUrl}/articles/${article.id}`)
                 .then(res => this.article = res.data)
         },
@@ -149,6 +151,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>

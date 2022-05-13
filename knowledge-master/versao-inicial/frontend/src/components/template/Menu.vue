@@ -5,20 +5,20 @@
             <input type="text" placeholder="Digite para filtrar..."
                 v-model="treeFilter" class="filter-field">
         </div>
-        <Tree :data="treeData" :options="treeOptions" :filter="treeFilter" ref="tree" />
+        <Tree :data="treeData" :options="treeOptions"
+            :filter="treeFilter" ref="tree" />
     </aside>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import Tree from 'liquor-tree'
-import { baseApiUrl } from '../../global'
+import { baseApiUrl } from '@/global'
 import axios from 'axios'
-
 
 export default {
     name: 'Menu',
-    component: { Tree },
+    components: { Tree },
     computed: mapState(['isMenuVisible']),
     data: function() {
         return {
@@ -43,7 +43,7 @@ export default {
         }
     },
     mounted() {
-        this.$refs.tree.$on('node:select', this.onNodeSelect)
+        this.$refs.tree.$on('node:selected', this.onNodeSelect)
     }
 }
 </script>
@@ -51,7 +51,8 @@ export default {
 <style>
     .menu {
         grid-area: menu;
-        background: linear-gradient(to right, #232426, #414345);
+        background: linear-gradient(to right, #232526, #414345);
+
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
@@ -76,17 +77,19 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+
         margin: 20px;
         padding-bottom: 8px;
-        border-bottom: 1px solid #aaa;
+        border-bottom: 1px solid #AAA;
     }
 
     .menu .menu-filter i {
-        color: #aaa;
+        color: #AAA;
         margin-right: 10px;
     }
+
     .menu input {
-        color: #ccc;
+        color: #CCC;
         font-size: 1.3rem;
         border: 0;
         outline: 0;
@@ -95,7 +98,7 @@ export default {
     }
 
     .tree-filter-empty {
-        color: #ccc;
+        color: #CCC;
         font-size: 1.3rem;
         margin-left: 20px;
     }

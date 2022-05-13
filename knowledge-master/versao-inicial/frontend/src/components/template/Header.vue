@@ -28,7 +28,7 @@ export default {
     },
     methods: {
         toggleMenu() {
-            this.$store.commit('toggleMenu')            
+            this.$store.commit('toggleMenu')
         }
     }
 }
@@ -38,6 +38,7 @@ export default {
     .header {
         grid-area: header;
         background: linear-gradient(to right, #1e469a, #49a7c1);
+
         display: flex;
         justify-content: center;
         align-items: center;
@@ -52,7 +53,12 @@ export default {
     }
 
     .title a {
-        color: #fff;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    .title a:hover {
+        color: #FFF;
         text-decoration: none;
     }
 
@@ -69,6 +75,7 @@ export default {
     }
 
     header.header > a.toggle:hover {
+        color: #fff;
         background-color: rgba(0, 0, 0, 0.2);
     }
 </style>
