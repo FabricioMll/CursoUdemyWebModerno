@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 /dist
+link github
+ParaForumdeDuvidas
 
 # local env files
 .env.local
