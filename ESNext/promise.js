@@ -9,4 +9,4 @@ function falarDepoisDe(segundos, frase) {
 falarDepoisDe(3, 'Que Legal!!')
 .then(frase => frase.concat(', juntou essa parte tambem'))
 .then(outraFrase => console.log(outraFrase))
-.catch(e => console.log(e))
+.catch(e => console.log("caiu no catch: ", e))

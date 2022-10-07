@@ -1,0 +1,40 @@
+What is Angular CLI Budgets? Budgets is one of the less known features of the Angular CLI. It’s a rather small but a very neat feature!
+
+As applications grow in functionality, they also grow in size. Budgets is a feature in the Angular CLI which allows you to set budget thresholds in your configuration to ensure parts of your application stay within boundaries which you set — Official Documentation
+
+Or in other words, we can describe our Angular application as a set of compiled JavaScript files called bundles which are produced by the build process. Angular budgets allows us to configure expected sizes of these bundles. More so, we can configure thresholds for conditions when we want to receive a warning or even fail build with an error if the bundle size gets too out of control!
+
+How To Define A Budget? Angular budgets are defined in the angular.json file. Budgets are defined per project which makes sense because every app in a workspace has different needs.
+
+Thinking pragmatically, it only makes sense to define budgets for the production builds. Prod build creates bundles with “true size” after applying all optimizations like tree-shaking and code minimization.
+
+Oops, a build error! The maximum bundle size was exceeded. This is a great signal that tells us that something went wrong…
+
+We might have experimented in our feature and didn’t clean up properly
+Our tooling can go wrong and perform a bad auto-import, or we pick bad item from the suggested list of imports
+We might import stuff from lazy modules in inappropriate locations
+Our new feature is just really big and doesn’t fit into existing budgets
+First Approach: Are your files gzipped?
+
+Generally speaking, gzipped file has only about 20% the size of the original file, which can drastically decrease the initial load time of your app. To check if you have gzipped your files, just open the network tab of developer console. In the “Response Headers”, if you should see “Content-Encoding: gzip”, you are good to go.
+
+How to gzip? If you host your Angular app in most of the cloud platforms or CDN, you should not worry about this issue as they probably have handled this for you. However, if you have your own server (such as NodeJS + expressJS) serving your Angular app, definitely check if the files are gzipped. The following is an example to gzip your static assets in a NodeJS + expressJS app. You can hardly imagine this dead simple middleware “compression” would reduce your bundle size from 2.21MB to 495.13KB.
+
+const compression = require('compression')
+const express = require('express')
+const app = express()
+app.use(compression())
+Second Approach:: Analyze your Angular bundle
+
+If your bundle size does get too big you may want to analyze your bundle because you may have used an inappropriate large-sized third party package or you forgot to remove some package if you are not using it anymore. Webpack has an amazing feature to give us a visual idea of the composition of a webpack bundle.
+
+enter image description here
+
+It’s super easy to get this graph.
+
+npm install -g webpack-bundle-analyzer
+In your Angular app, run ng build --stats-json (don’t use flag --prod). By enabling --stats-json you will get an additional file stats.json
+Finally, run webpack-bundle-analyzer ./dist/stats.json and your browser will pop up the page at localhost:8888. Have fun with it.
+ref 1: How Did Angular CLI Budgets Save My Day And How They Can Save Yours
+
+ref 2: Optimize Angular bundle size in 4 steps

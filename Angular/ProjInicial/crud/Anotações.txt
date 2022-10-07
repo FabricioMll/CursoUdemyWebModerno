@@ -1,0 +1,10 @@
+Ver novamente esta aula 515.
+Módulos Contém 5 atributos: 
+1. Declarations (components, diretivas e  pipies que pertencem a este módulo), 
+2. Imports (módulos externos que serão visíveis neste módulo),
+3. Exports (components, diretivas e pipes que serão exportados, ou seja, visiveis para fora do módulo), 
+4. Providers (guardarão os services) e 
+5. Bootstrap (indica qual componente app-module e qual componente principal que será carregado).
+
+
+O Injectable são as lógicas que serão "injetadas" no componente que será provido com ela. (Aula 525, talvez tenha que ver de novo essa aula).
